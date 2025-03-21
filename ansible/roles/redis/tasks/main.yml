@@ -1,0 +1,15 @@
+---
+# tasks file for redis
+- name: Install redis on Rocky Linux
+  ansible.builtin.dnf:
+    name: redis
+    state: present
+  when: ansible_facts['distribution'] == 'Rocky'
+
+- name: Ensure redis is started and enabled
+  ansible.builtin.service:
+    name: redis
+    state: started
+    enabled: true
+  when: ansible_facts['distribution'] == 'Rocky'
+
